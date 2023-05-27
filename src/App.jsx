@@ -10,7 +10,7 @@ import Home from "./components/Home";
 
 function App() {
   const [results, setResults] = useState([]);
-  const [query, setQuery] = useState("trees");
+  const [query, setQuery] = useState("flowers");
   const [isLoading, setIsLoading] = useState(true);
   
   const url = `https://api.flickr.com/services/rest/?api_key=${apiKey}&method=flickr.photos.search&format=json&nojsoncallback=true&text=${query}&per_page=24`;
@@ -40,8 +40,10 @@ function App() {
       {/* {console.log(results)} */}
         <Routes>
           <Route path="" element={<Home results={results} isLoading={isLoading} title={query} />}>
-            {/* <Route path=":topic" element={<Home />}/> */}
+            <Route index path=":query" element={<Home results={results} isLoading={isLoading} title={query} />} />
           </Route>
+
+          
         </Routes>
     </div>
   )
